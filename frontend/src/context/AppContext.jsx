@@ -3,6 +3,9 @@ import axios from "axios";
 
 const AppContext = createContext();
 
+// 👇 THIS IS YOUR NEW LIVE RENDER BACKEND URL ROUTE
+const API_URL = "https://book-store-app-039y.onrender.com/api";
+
 export const AppContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [cart, setCart] = useState([]);
@@ -20,7 +23,8 @@ export const AppContextProvider = ({ children }) => {
     // SIGNUP FUNCTION
     const signup = async (userData) => {
         try {
-            const res = await axios.post("http://localhost:5000/api/auth/signup", userData);
+            // Updated to use your live link instead of localhost
+            const res = await axios.post(`${API_URL}/auth/signup`, userData);
             
             if (res.data.success) {
                 setUser(res.data.user);
@@ -36,7 +40,8 @@ export const AppContextProvider = ({ children }) => {
     // LOGIN FUNCTION
     const login = async (email, password) => {
         try {
-            const res = await axios.post("http://localhost:5000/api/auth/login", { email, password });
+            // Updated to use your live link instead of localhost
+            const res = await axios.post(`${API_URL}/auth/login`, { email, password });
             
             if (res.data.success) {
                 setUser(res.data.user);
