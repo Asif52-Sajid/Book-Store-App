@@ -9,7 +9,7 @@ const app = express();
 
 // 2. Middleware
 app.use(express.json());
-app.use(cors()); // Critical for letting Frontend talk to Backend
+app.use(cors({ origin: "*" })); // Critical for letting Frontend talk to Backend
 
 // 3. MongoDB Connection (Replace with your actual Compass string if different)
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/bookstore";
