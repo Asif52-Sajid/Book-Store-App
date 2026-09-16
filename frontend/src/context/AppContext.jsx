@@ -3,7 +3,7 @@ import axios from "axios";
 
 const AppContext = createContext();
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://bookstore-app-fss9.onrender.com/";
 
 export const AppContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
