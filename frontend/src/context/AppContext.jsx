@@ -3,8 +3,7 @@ import axios from "axios";
 
 const AppContext = createContext();
 
-// 👇 THIS IS YOUR NEW LIVE RENDER BACKEND URL ROUTE
-const API_URL = "https://book-store-app-039y.onrender.com/api";
+const API_URL = "http://localhost:5000/api";
 
 export const AppContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -23,13 +22,12 @@ export const AppContextProvider = ({ children }) => {
     // SIGNUP FUNCTION
     const signup = async (userData) => {
         try {
-            // Updated to use your live link instead of localhost
             const res = await axios.post(`${API_URL}/auth/signup`, userData);
             
             if (res.data.success) {
                 setUser(res.data.user);
                 localStorage.setItem("bookstoreUser", JSON.stringify(res.data.user));
-                return true; // Used by form to navigate to Home
+                return true; 
             }
         } catch (error) {
             alert(error.response?.data?.message || "Signup failed!");
@@ -40,7 +38,6 @@ export const AppContextProvider = ({ children }) => {
     // LOGIN FUNCTION
     const login = async (email, password) => {
         try {
-            // Updated to use your live link instead of localhost
             const res = await axios.post(`${API_URL}/auth/login`, { email, password });
             
             if (res.data.success) {
@@ -60,7 +57,6 @@ export const AppContextProvider = ({ children }) => {
         localStorage.removeItem("bookstoreUser");
     };
 
-    // return the wrapper with search states added to value bundle
     return (
         <AppContext.Provider value={{ user, cart, setCart, login, signup, logout, searchQuery, setSearchQuery }}>
             {children}
